@@ -59,126 +59,141 @@
         </footer>
     </div>
     <div class="right">
-        <form [formGroup]="details">
-            <div class="formContainer">
-                <div class="row">
-                    <div class="input">
-                        <mat-form-field class="example-full-width">
-                            <mat-label>&nbsp; First Name</mat-label>
-                            <fa-icon [icon]="faUser" matPrefix></fa-icon>
-                            <input type="text" formControlName="firstName" matInput placeholder="Ex. john">
-                            <mat-error *ngIf="!details.controls.firstName.valid">
-                                First Name is <strong>required</strong>
-                            </mat-error>
-                        </mat-form-field>
+        <ng-container *ngIf="!loading">
+            <form [formGroup]="details">
+                <div class="formContainer">
+                    <div class="row">
+                        <div class="input">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>&nbsp; First Name</mat-label>
+                                <fa-icon [icon]="faUser" matPrefix></fa-icon>
+                                <input type="text" formControlName="firstName" matInput placeholder="Ex. john">
+                                <mat-error *ngIf="!details.controls.firstName.valid">
+                                    First Name is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="input">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>&nbsp; Last Name</mat-label>
+                                <fa-icon [icon]="faUser" matPrefix></fa-icon>
+                                <input type="text" formControlName="lastName" matInput placeholder="Ex. doe">
+                                <mat-error *ngIf="!details.controls.lastName.valid">
+                                    Last Name is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
                     </div>
-                    <div class="input">
-                        <mat-form-field class="example-full-width">
-                            <mat-label>&nbsp; Last Name</mat-label>
-                            <fa-icon [icon]="faUser" matPrefix></fa-icon>
-                            <input type="text" formControlName="lastName" matInput placeholder="Ex. doe">
-                            <mat-error *ngIf="!details.controls.lastName.valid">
-                                Last Name is <strong>required</strong>
-                            </mat-error>
-                        </mat-form-field>
+                    <div class="row">
+                        <div class="input">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Phone</mat-label>
+                                <span matPrefix>+91 &nbsp;</span>
+                                <input style="padding-left: 0;" type="tel" formControlName="phone" matInput placeholder="555-555-1234">
+                                <mat-error *ngIf="!details.controls.phone.valid">
+                                    Phone number is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="input">
+                            <mat-form-field class="example-full-width">
+                                <mat-label> &nbsp; Email</mat-label>
+                                <!-- <mat-icon matSuffix>email</mat-icon> -->
+                                <fa-icon [icon]="faEnvelope" matPrefix></fa-icon>
+                                <input type="email" formControlName="email" matInput placeholder="Ex. sample@gmail.com">
+                                <mat-error *ngIf="!details.controls.email.valid">
+                                    Enter <strong>valid</strong> Email id
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="input">
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Phone</mat-label>
-                            <span matPrefix>+91 &nbsp;</span>
-                            <input type="tel" formControlName="phone" matInput placeholder="555-555-1234">
-                            <mat-error *ngIf="!details.controls.phone.valid">
-                                Phone number is <strong>required</strong>
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-                    <div class="input">
-                        <mat-form-field class="example-full-width">
-                            <mat-label> &nbsp; Email</mat-label>
-                            <!-- <mat-icon matSuffix>email</mat-icon> -->
-                            <fa-icon [icon]="faEnvelope" matPrefix></fa-icon>
-                            <input type="email" formControlName="email" matInput placeholder="Ex. sample@gmail.com">
-                            <mat-error *ngIf="!details.controls.email.valid">
-                                Enter <strong>valid</strong> Email id
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input">
-                        <mat-form-field class="example-full-width">
-                            <mat-label>TYPE OF WEDDING</mat-label>
-                            <select formControlName="typeOfWedding" matNativeControl name="car">
-                                  <option value="" selected></option>
-                                  <option *ngFor="let marriageType of marriageTypes" [value]="marriageType">
-                                    {{marriageType}}
-                                  </option>
+                    <div class="row">
+                        <div class="input">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>TYPE OF WEDDING</mat-label>
+                                <select formControlName="typeOfWedding" matNativeControl name="car">
+                                      <option value="" selected></option>
+                                      <option *ngFor="let marriageType of marriageTypes" [value]="marriageType">
+                                        {{marriageType}}
+                                      </option>
                                 </select>
-                            <mat-error *ngIf="!details.controls.typeOfWedding.valid">
-                                Type of wedding is <strong>required</strong>
-                            </mat-error>
-                        </mat-form-field>
+                                <mat-error *ngIf="!details.controls.typeOfWedding.valid">
+                                    Type of wedding is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="input">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>&nbsp; Venue</mat-label>
+                                <!-- <mat-icon matSuffix>email</mat-icon> -->
+                                <fa-icon [icon]="faBuilding" matPrefix></fa-icon>
+                                <input type="text" formControlName="venue" matInput placeholder="Ex. chennai and Mandapam name">
+                                <mat-error *ngIf="!details.controls.venue.valid">
+                                    Venue is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
                     </div>
-                    <div class="input">
+                    <div class="row">
+                        <div class="input">
+                            <mat-form-field color="accent" class="example-full-width">
+                                <mat-label>Event Date</mat-label>
+                                <input matInput [matDatepicker]="picker2" formControlName="date">
+                                <mat-datepicker-toggle matPrefix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                                <mat-error *ngIf="!details.controls.date.valid">
+                                    Date is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="input">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>&nbsp; Event Time</mat-label>
+                                <!-- <mat-icon matSuffix>email</mat-icon> -->
+                                <fa-icon [icon]="faClock" matPrefix></fa-icon>
+                                <input type="text" formControlName="time" matInput placeholder="Ex. Feb24th evening reception timing">
+                                <mat-error *ngIf="!details.controls.time.valid">
+                                    Time is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="fullrow">
+                        <p>special requirements</p>
+                        <div class="checkboxdiv">
+                            <section class="example-section example-full-width">
+                                <ng-container *ngFor="let item of specialReq">
+                                    <mat-checkbox (click)="checkSpecialReq(item)" class="example-margin" color="primary">{{item}}</mat-checkbox>
+                                </ng-container>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="fullrow">
+                        <p style="margin-bottom: 10px;">Extra Session/Message</p>
                         <mat-form-field class="example-full-width">
-                            <mat-label>&nbsp; Venue</mat-label>
+                            <mat-label>mention if you have any extra sessions like mehendi, engagement, Nalangu etc. or leave any message </mat-label>
                             <!-- <mat-icon matSuffix>email</mat-icon> -->
-                            <fa-icon [icon]="faBuilding" matPrefix></fa-icon>
-                            <input type="text" formControlName="venue" matInput placeholder="Ex. chennai and Mandapam name">
-                            <mat-error *ngIf="!details.controls.venue.valid">
-                                Venue is <strong>required</strong>
-                            </mat-error>
+                            <input type="text" formControlName="message" matInput placeholder="">
                         </mat-form-field>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="input">
-                        <mat-form-field color="accent" class="example-full-width">
-                            <mat-label>Event Date</mat-label>
-                            <input matInput [matDatepicker]="picker2" formControlName="date">
-                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                            <mat-datepicker #picker2 color="primary"></mat-datepicker>
-                            <mat-error *ngIf="!details.controls.date.valid">
-                                Date is <strong>required</strong>
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-                    <div class="input">
-                        <mat-form-field class="example-full-width">
-                            <mat-label>&nbsp; Event Time</mat-label>
-                            <!-- <mat-icon matSuffix>email</mat-icon> -->
-                            <fa-icon [icon]="faClock" matPrefix></fa-icon>
-                            <input type="text" formControlName="time" matInput placeholder="Ex. Feb24th evening reception timing">
-                            <mat-error *ngIf="!details.controls.time.valid">
-                                Time is <strong>required</strong>
-                            </mat-error>
-                        </mat-form-field>
+                    <div class="finalrow">
+                        <p class="successMsg" *ngIf="success"> Request sent succesfully,We will send the quote to your registered mobile number</p>
+                        <p class="errorMsg" *ngIf="error">There was an error please try again</p>
+                        <button (click)="getQuotes()" type="submit" mat-raised-button color="primary" style="width: 250px;height: 60px;font-size: 1.8em;">Get Quote</button>
                     </div>
                 </div>
-                <div class="fullrow">
-                    <p>special requirements</p>
-                    <div class="checkboxdiv">
-                        <section class="example-section example-full-width">
-                            <ng-container *ngFor="let item of specialReq">
-                                <mat-checkbox (click)="checkSpecialReq(item)" class="example-margin" color="primary">{{item}}</mat-checkbox>
-                            </ng-container>
-                        </section>
-                    </div>
+            </form>
+        </ng-container>
+        <ng-container *ngIf="loading">
+            <div class="loaderContainer">
+                <div class="loader">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
-                <div class="fullrow">
-                    <p style="margin-bottom: 10px;">Extra Session/Message</p>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>mention if you have any extra sessions like mehendi, engagement, Nalangu etc. or leave any message </mat-label>
-                        <!-- <mat-icon matSuffix>email</mat-icon> -->
-                        <input type="text" formControlName="message" matInput placeholder="">
-                    </mat-form-field>
-                </div>
-                <div class="finalrow">
-                    <button (click)="getQuotes()" type="submit" mat-raised-button color="primary" style="width: 250px;height: 60px;font-size: 1.8em;">Get Quote</button>
-                </div>
+                <p>Please wait sending your request....</p>
             </div>
-        </form>
+
+        </ng-container>
     </div>
 </div>
