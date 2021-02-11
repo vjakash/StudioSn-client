@@ -110,7 +110,7 @@
                     <div class="row">
                         <div class="input">
                             <mat-form-field class="example-full-width">
-                                <mat-label>TYPE OF WEDDING</mat-label>
+                                <mat-label>Event Type</mat-label>
                                 <select formControlName="typeOfWedding" matNativeControl name="car">
                                       <option value="" selected></option>
                                       <option *ngFor="let marriageType of marriageTypes" [value]="marriageType">
@@ -124,12 +124,58 @@
                         </div>
                         <div class="input">
                             <mat-form-field class="example-full-width">
-                                <mat-label>&nbsp; Venue</mat-label>
+                                <mat-label>&nbsp; Event Location</mat-label>
                                 <!-- <mat-icon matSuffix>email</mat-icon> -->
+                                <fa-icon [icon]="faMapMarkerAlt" matPrefix></fa-icon>
+                                <input type="text" formControlName="location" matInput placeholder="Ex. chennai">
+                                <mat-error *ngIf="!details.controls.location.valid">
+                                    Location is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>&nbsp;Event Venue</mat-label>
                                 <fa-icon [icon]="faBuilding" matPrefix></fa-icon>
-                                <input type="text" formControlName="venue" matInput placeholder="Ex. chennai and Mandapam name">
+                                <input type="text" formControlName="venue" matInput placeholder="Ex. ABC Hall,Home">
                                 <mat-error *ngIf="!details.controls.venue.valid">
                                     Venue is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="input">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>&nbsp; Expected no of Guests</mat-label>
+                                <fa-icon [icon]="faUsers" matPrefix></fa-icon>
+                                <input type="text" formControlName="expectedNoOfGuests" matInput placeholder="Ex. ABC Hall,Home">
+                                <!-- <mat-error *ngIf="!details.controls.venue.valid">
+                                    Venue is <strong>required</strong>
+                                </mat-error> -->
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input">
+                            <mat-form-field color="accent" class="example-full-width">
+                                <mat-label>Event Start Date</mat-label>
+                                <input matInput [matDatepicker]="picker2" formControlName="startDate">
+                                <mat-datepicker-toggle matPrefix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                                <mat-error *ngIf="!details.controls.startDate.valid">
+                                    Start Date is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="input">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>&nbsp; Event Start Time</mat-label>
+                                <!-- <mat-icon matSuffix>email</mat-icon> -->
+                                <fa-icon [icon]="faClock" matPrefix></fa-icon>
+                                <input type="text" formControlName="startTime" matInput placeholder="Ex. Mrng 6AM">
+                                <mat-error *ngIf="!details.controls.startTime.valid">
+                                    Start Time is <strong>required</strong>
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -137,23 +183,23 @@
                     <div class="row">
                         <div class="input">
                             <mat-form-field color="accent" class="example-full-width">
-                                <mat-label>Event Date</mat-label>
-                                <input matInput [matDatepicker]="picker2" formControlName="date">
-                                <mat-datepicker-toggle matPrefix [for]="picker2"></mat-datepicker-toggle>
-                                <mat-datepicker #picker2 color="primary"></mat-datepicker>
-                                <mat-error *ngIf="!details.controls.date.valid">
-                                    Date is <strong>required</strong>
+                                <mat-label>Event End Date</mat-label>
+                                <input matInput [matDatepicker]="picker1" formControlName="endDate">
+                                <mat-datepicker-toggle matPrefix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1 color="primary"></mat-datepicker>
+                                <mat-error *ngIf="!details.controls.endDate.valid">
+                                    End Date is <strong>required</strong>
                                 </mat-error>
                             </mat-form-field>
                         </div>
                         <div class="input">
                             <mat-form-field class="example-full-width">
-                                <mat-label>&nbsp; Event Time</mat-label>
+                                <mat-label>&nbsp; Event End Time</mat-label>
                                 <!-- <mat-icon matSuffix>email</mat-icon> -->
                                 <fa-icon [icon]="faClock" matPrefix></fa-icon>
-                                <input type="text" formControlName="time" matInput placeholder="Ex. Feb24th evening reception timing">
-                                <mat-error *ngIf="!details.controls.time.valid">
-                                    Time is <strong>required</strong>
+                                <input type="text" formControlName="endTime" matInput placeholder="Ex.evening 6pm">
+                                <mat-error *ngIf="!details.controls.endTime.valid">
+                                    End Time is <strong>required</strong>
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -169,9 +215,17 @@
                         </div>
                     </div>
                     <div class="fullrow">
-                        <p style="margin-bottom: 10px;">Extra Session/Message</p>
+                        <p style="margin-bottom: 10px;">Extra Session</p>
                         <mat-form-field class="example-full-width">
-                            <mat-label>mention if you have any extra sessions like mehendi, engagement, Nalangu etc. or leave any message </mat-label>
+                            <mat-label>mention if you have any extra sessions like mehendi, engagement, Nalangu etc</mat-label>
+                            <!-- <mat-icon matSuffix>email</mat-icon> -->
+                            <input type="text" formControlName="extraSession" matInput placeholder="">
+                        </mat-form-field>
+                    </div>
+                    <div class="fullrow">
+                        <p style="margin-bottom: 10px;">Message</p>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>We would love to hear more about your Event... </mat-label>
                             <!-- <mat-icon matSuffix>email</mat-icon> -->
                             <input type="text" formControlName="message" matInput placeholder="">
                         </mat-form-field>
